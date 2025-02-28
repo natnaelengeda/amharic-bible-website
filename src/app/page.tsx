@@ -1,10 +1,12 @@
-import DefaultLayout from "@/layouts/DefaultLayout";
 import Image from "next/image";
+
+// Layout
+import DefaultLayout from "@/layouts/DefaultLayout";
 
 export default function Home() {
   return (
     <DefaultLayout>
-      <div>
+      <div className="w-full h-full">
 
       </div>
     </DefaultLayout>
