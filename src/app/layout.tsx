@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 
 // Meta Data
 import { meta } from "@/data/metadata";
+import AppProvider from "./provider";
 
 export const metadata: Metadata = meta;
 
@@ -17,7 +18,9 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`antialiased`}>
-        {children}
+        <AppProvider>
+          {children}
+        </AppProvider>
       </body>
     </html>
   );

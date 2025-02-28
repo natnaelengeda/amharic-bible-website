@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react'
 
 import { ChevronRight } from "lucide-react"
@@ -13,12 +15,13 @@ import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
-  SidebarHeader,
   SidebarMenu,
-  SidebarMenuButton,
   SidebarMenuItem,
-  SidebarRail,
 } from "@/components/ui/sidebar"
+
+// Redux
+import { useDispatch, useSelector } from 'react-redux';
+import { SelectionState, setBook, setChapter } from '@/state/selection';
 
 // Data - Import all books
 import Book1 from "@/data/individual_books/01_ኦሪት ዘፍጥረት.json";
@@ -89,7 +92,12 @@ import Book65 from "@/data/individual_books/65_የይሁዳ መልእክት.json
 import Book66 from "@/data/individual_books/66_የዮሐንስ ራእይ.json";
 
 
+
 export default function AppSidebar() {
+  const selection = useSelector((state: { selection: SelectionState }) => state.selection);
+
+  const dispatch = useDispatch();
+
   // Create an array of all books
   const allBooks = [
     Book1, Book2, Book3, Book4, Book5, Book6, Book7, Book8, Book9, Book10,
@@ -114,23 +122,18 @@ export default function AppSidebar() {
 
   return (
     <Sidebar>
-      <SidebarHeader>
-        <SidebarRail>
-          <SidebarMenuButton />
-          <SidebarMenuButton />
-          <SidebarMenuButton />
-          <SidebarMenuButton />
-        </SidebarRail>
-      </SidebarHeader>
-
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>መፆህፍት</SidebarGroupLabel>
+          <SidebarGroupLabel className='text-lg'>መፆህፍት</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {data.navMain.map((item, index) => (
                 <Collapsible key={index}>
-                  <CollapsibleTrigger className="flex w-full items-center justify-between rounded-lg px-3 py-2 text-left hover:bg-gray-200 hover:text-accent-foreground cursor-pointer">
+                  <CollapsibleTrigger
+                    onClick={() => {
+                      dispatch(setBook(item.title));
+                    }}
+                    className={`${selection.book == item.title ? "bg-gray-200" : ""} flex w-full items-center justify-between rounded-lg px-3 py-2 text-left hover:bg-gray-200 hover:text-accent-foreground cursor-pointer`}>
                     {item.title}
                     <ChevronRight className="h-4 w-4" />
                   </CollapsibleTrigger>
@@ -139,7 +142,11 @@ export default function AppSidebar() {
                       {item.items.map((subItem, subIndex) => (
                         <SidebarMenuItem
                           key={subIndex}
-                          className="rounded-lg px-3 py-2 hover:bg-gray-200 hover:text-accent-foreground cursor-pointer">
+                          onClick={() => {
+                            dispatch(setBook(item.title));
+                            dispatch(setChapter(`${item.title}-${subItem.title}`));
+                          }}
+                          className={`${selection.chapter == `${item.title}-${subItem.title}` ? "bg-gray-200" : ""} rounded-lg px-3 py-2 hover:bg-gray-200 hover:text-accent-foreground cursor-pointer`}>
                           {subItem.title}
                         </SidebarMenuItem>
                       ))}
