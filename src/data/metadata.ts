@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
 export const meta: Metadata = {
-  metadataBase: new URL('https://shegertalk.vercel.app/'),
+  metadataBase: new URL('https://amharicbible.vercel.app/'),
   icons: {
     icon: 'logo.jpeg',
   },
@@ -24,7 +24,7 @@ export const meta: Metadata = {
   openGraph: {
     title: "Amharic Bible",
     description: "Amharic Bible - Get you amharic bible",
-    url: 'https://shegertalk.vercel.app/',
+    url: 'https://amharicbible.vercel.app/',
     siteName: "Sheger Talk",
     images: [
       {
