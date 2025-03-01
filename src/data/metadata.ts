@@ -25,7 +25,7 @@ export const meta: Metadata = {
     title: "Amharic Bible",
     description: "Amharic Bible - Get you amharic bible",
     url: 'https://amharicbible.vercel.app/',
-    siteName: "Sheger Talk",
+    siteName: "Amharic Bible",
     images: [
       {
         url: "/seo-image.jpg",
@@ -53,7 +53,7 @@ export const meta: Metadata = {
     card: "summary_large_image",
     title: "Amharic Bible",
     description: "Amharic Bible - Get you amharic bible",
-    site: "@ShegerTalk",
+    site: "@AmharicBible",
     images: ['/seo-image.jpg'],
     creator: "@natnaelengeda",
   },
