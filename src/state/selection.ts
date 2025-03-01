@@ -3,24 +3,26 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 export interface SelectionState {
-  book: string;
-  chapter: string;
+  book: { title: string, index: number };
+  chapter: { title: string, index: number };
 }
 
 export const initialState: SelectionState = {
-  book: "",
-  chapter: "",
+  book: { title: "", index: 0 },
+  chapter: { title: "", index: 0 },
 };
 
 export const selectionSlice = createSlice({
   name: "selection",
   initialState,
   reducers: {
-    setBook: (state, action: PayloadAction<string>) => {
-      state.book = action.payload;
+    setBook: (state, action: PayloadAction<{ title: string, index: number }>) => {
+      state.book.title = action.payload.title;
+      state.book.index = action.payload.index;
     },
-    setChapter: (state, action: PayloadAction<string>) => {
-      state.chapter = action.payload;
+    setChapter: (state, action: PayloadAction<{ title: string, index: number }>) => {
+      state.chapter.title = action.payload.title;
+      state.chapter.index = action.payload.index;
     },
   },
 });
